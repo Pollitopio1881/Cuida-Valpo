@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Reporte Patrimonial</title>
+</head>
+<body>
+    <h2>Registro y pre-diagnóstico de daños</h2>
+    <form method="POST">
+        {% csrf_token %}
+        <label>Dirección:</label><br>
+        <input type="text" name="direccion" required><br><br>
+
+        <label>Descripción del daño:</label><br>
+        <textarea name="descripcion" required></textarea><br><br>
+
+        <h3>Cuestionario:</h3>
+        <input type="checkbox" name="grieta_visible"> ¿Hay grietas visibles en muros o fachada?<br>
+        <input type="checkbox" name="grieta_cambio"> ¿Alguna grieta ha crecido en las últimas semanas?<br>
+        <input type="checkbox" name="deformacion"> ¿Ves muros inclinados o pisos hundidos?<br>
+        <input type="checkbox" name="desprendimiento"> ¿Se han desprendido trozos de fachada?<br>
+        <input type="checkbox" name="filtracion"> ¿Hay filtraciones o manchas de humedad?<br>
+        <input type="checkbox" name="antiguedad"> ¿La vivienda tiene más de 50 años?<br>
+        <input type="checkbox" name="zona_patrimonial"> ¿Tu casa está en una zona patrimonial?<br><br>
+
+        <button type="submit">Enviar Reporte</button>
+    </form>
+</body>
+</html>

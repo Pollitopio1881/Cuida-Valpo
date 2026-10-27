@@ -2,29 +2,28 @@ from django.shortcuts import render
 from .models import Reporte
 
 def formulario_view(request):
-    # 1. Si el usuario hace clic en "Enviar" en la página, el método es POST
     if request.method == 'POST':
-        
-        # A. RECIBIR DATOS (Reemplaza a los input() de tu script)
-        # Extraemos lo que el usuario escribió usando el 'name' del formulario HTML
+        # Extraer datos del formulario HTML
         dir_ingresada = request.POST.get('direccion')
         desc_ingresada = request.POST.get('descripcion')
         
-        # Para los booleanos (checkboxes del HTML), si están marcados llegan como 'on'
         grieta_vis = request.POST.get('grieta_visible') == 'on'
+        grieta_cambio_vis = request.POST.get('grieta_cambio') == 'on'
         deformacion_vis = request.POST.get('deformacion') == 'on'
-        # (Aquí debes agregar el resto de tus variables del cuestionario)
+        desprendimiento_vis = request.POST.get('desprendimiento') == 'on'
+        filtracion_vis = request.POST.get('filtracion') == 'on'
+        antiguedad_vis = request.POST.get('antiguedad') == 'on'
+        zona_patrimonial_vis = request.POST.get('zona_patrimonial') == 'on'
 
-        # B. TU LÓGICA DE NEGOCIO (Reemplaza a calcular_urgencia)
-        # Aquí sumas los puntos exactamente como lo hacías en consola
+        # Sumar puntaje
         puntaje_total = 0
-        if grieta_vis:
-            puntaje_total += 2
-        if deformacion_vis:
-            puntaje_total += 3
-        # (Completa la suma de puntos)
+        if grieta_vis: puntaje_total += 2
+        if grieta_cambio_vis: puntaje_total += 3
+        if deformacion_vis: puntaje_total += 3
+        if desprendimiento_vis: puntaje_total += 4
+        if filtracion_vis: puntaje_total += 1
+        if antiguedad_vis: puntaje_total += 1
 
-        # Determinar nivel
         if puntaje_total >= 6:
             nivel = "ALTA"
         elif puntaje_total >= 3:
@@ -32,19 +31,22 @@ def formulario_view(request):
         else:
             nivel = "BAJA"
 
-        # C. GUARDAR EN LA BASE DE DATOS
+        # Guardar en base de datos
         nuevo_reporte = Reporte.objects.create(
             direccion=dir_ingresada,
             descripcion=desc_ingresada,
             grieta_visible=grieta_vis,
+            grieta_cambio=grieta_cambio_vis,
             deformacion=deformacion_vis,
+            desprendimiento=desprendimiento_vis,
+            filtracion=filtracion_vis,
+            antiguedad=antiguedad_vis,
+            zona_patrimonial=zona_patrimonial_vis,
             puntaje=puntaje_total,
             nivel_urgencia=nivel
-            # (Agrega los demás campos que falten)
         )
 
-        # D. SERVIR EL RESULTADO (Reemplaza a los print() de tu ficha)
-        # Le pasamos las variables al archivo resultado.html para que las muestre
+        # Enviar al HTML de resultados
         contexto = {
             'reporte': nuevo_reporte,
             'nivel': nivel,
@@ -52,5 +54,4 @@ def formulario_view(request):
         }
         return render(request, 'patrimonio/resultado.html', contexto)
 
-    # 2. Si el usuario recién entra a la página (método GET), le mostramos el formulario vacío
     return render(request, 'patrimonio/formulario.html')
