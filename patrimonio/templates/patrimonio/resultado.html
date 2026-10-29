@@ -10,6 +10,21 @@
     <p><strong>Puntaje Total:</strong> {{ puntaje }}</p>
     <p><strong>Nivel de Urgencia:</strong> {{ nivel }}</p>
     
+    <h2>Trámites recomendados</h2>
+
+    {% if tramites %}
+      <ul>
+        {% for tramite in tramites %}
+          <li>
+            <p>{{ tramite.descripcion }}</p>
+            <small>Fuente: {{ tramite.fuente }}</small>
+          </li>
+        {% endfor %}
+      </ul>
+    {% else %}
+      <p>No hay trámites asociados a este nivel de urgencia.</p>
+    {% endif %}
+
     <br>
     <a href="/">Volver a enviar otro reporte</a>
 </body>
