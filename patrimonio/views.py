@@ -1,6 +1,31 @@
 from django.shortcuts import render
 from .models import Reporte
 
+TRAMITES = {
+    "dom": {
+        "descripcion": "Consultar a la DOM de Valparaíso si la reparación requiere permiso o inspección",
+        "fuente": "Ley General de Urbanismo y Construcciones / Guía DOM [VERIFICAR artículo]",
+    },
+    "profesional": {
+        "descripcion": "Solicitar evaluación de un arquitecto o ingeniero civil",
+        "fuente": "[POR COMPLETAR]",
+    },
+    "ds27": {
+        "descripcion": "Revisar si puedes postular al programa de mejoramiento de viviendas DS27",
+        "fuente": "DS27 MINVU [VERIFICAR requisitos vigentes]",
+    },
+    "zona_patrimonial": {
+        "descripcion": "Si la vivienda está en zona protegida, consultar antes de intervenir la fachada",
+        "fuente": "Ley 17.288 de Monumentos Nacionales [VERIFICAR si aplica a tu sector]",
+    },
+}
+
+TRAMITES_POR_NIVEL = {
+    "ALTA": ["dom", "profesional", "ds27"],
+    "MEDIA": ["profesional", "ds27"],
+    "BAJA": ["ds27"],
+}
+
 def formulario_view(request):
     if request.method == 'POST':
         # Extraer datos del formulario HTML
@@ -46,11 +71,22 @@ def formulario_view(request):
             nivel_urgencia=nivel
         )
 
+        # Filtrar trámites según nivel y respuestas
+        claves_tramites = list(TRAMITES_POR_NIVEL[nivel])
+        if zona_patrimonial_vis and "zona_patrimonial" not in claves_tramites:
+            claves_tramites.append("zona_patrimonial")
+
+        # Convertir claves en datos completos para el template
+        tramites_recomendados = []
+        for clave in claves_tramites:
+            tramites_recomendados.append(TRAMITES[clave])
+
         # Enviar al HTML de resultados
         contexto = {
             'reporte': nuevo_reporte,
             'nivel': nivel,
-            'puntaje': puntaje_total
+            'puntaje': puntaje_total,
+            'tramites': tramites_recomendados,
         }
         return render(request, 'patrimonio/resultado.html', contexto)
 
