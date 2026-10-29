@@ -1,16 +1,55 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Resultado del Diagnóstico</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CuidaValpo | Resultado del Diagnóstico</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h2>Ficha de Pre-diagnóstico</h2>
-    <p><strong>Dirección:</strong> {{ reporte.direccion }}</p>
-    <p><strong>Descripción:</strong> {{ reporte.descripcion }}</p>
-    <p><strong>Puntaje Total:</strong> {{ puntaje }}</p>
-    <p><strong>Nivel de Urgencia:</strong> {{ nivel }}</p>
-    
-    <br>
-    <a href="/">Volver a enviar otro reporte</a>
+<body class="bg-light">
+
+    <nav class="navbar navbar-dark bg-dark mb-4">
+        <div class="container">
+            <span class="navbar-brand fw-bold">🏛️ CuidaValpo</span>
+        </div>
+    </nav>
+
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Ficha de Pre-diagnóstico</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <p><strong>Dirección:</strong> {{ reporte.direccion }}</p>
+                        <p><strong>Descripción:</strong> {{ reporte.descripcion }}</p>
+                        <p><strong>Puntaje Total:</strong> {{ puntaje }}</p>
+
+                        <p class="mb-0"><strong>Nivel de Urgencia:</strong>
+                            {% if nivel == "ALTA" %}
+                                <span class="badge bg-danger fs-6">{{ nivel }}</span>
+                            {% elif nivel == "MEDIA" %}
+                                <span class="badge bg-warning text-dark fs-6">{{ nivel }}</span>
+                            {% else %}
+                                <span class="badge bg-success fs-6">{{ nivel }}</span>
+                            {% endif %}
+                        </p>
+
+                        <!-- Espacio reservado para Emily (trámites) y Gaspar (vecinos).
+                             Déjenlo: ellos agregan su contenido aquí dentro. -->
+                    </div>
+
+                    <div class="card-footer text-end">
+                        <a href="/" class="btn btn-outline-primary">Enviar otro reporte</a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>

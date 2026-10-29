@@ -1,28 +1,84 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
-    <title>Reporte Patrimonial</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>CuidaValpo | Reporte Patrimonial</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h2>Registro y pre-diagnóstico de daños</h2>
-    <form method="POST">
-        {% csrf_token %}
-        <label>Dirección:</label><br>
-        <input type="text" name="direccion" required><br><br>
+<body class="bg-light">
 
-        <label>Descripción del daño:</label><br>
-        <textarea name="descripcion" required></textarea><br><br>
+    <nav class="navbar navbar-dark bg-dark mb-4">
+        <div class="container">
+            <span class="navbar-brand fw-bold">🏛️ CuidaValpo</span>
+        </div>
+    </nav>
 
-        <h3>Cuestionario:</h3>
-        <input type="checkbox" name="grieta_visible"> ¿Hay grietas visibles en muros o fachada?<br>
-        <input type="checkbox" name="grieta_cambio"> ¿Alguna grieta ha crecido en las últimas semanas?<br>
-        <input type="checkbox" name="deformacion"> ¿Ves muros inclinados o pisos hundidos?<br>
-        <input type="checkbox" name="desprendimiento"> ¿Se han desprendido trozos de fachada?<br>
-        <input type="checkbox" name="filtracion"> ¿Hay filtraciones o manchas de humedad?<br>
-        <input type="checkbox" name="antiguedad"> ¿La vivienda tiene más de 50 años?<br>
-        <input type="checkbox" name="zona_patrimonial"> ¿Tu casa está en una zona patrimonial?<br><br>
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
 
-        <button type="submit">Enviar Reporte</button>
-    </form>
+                <div class="card shadow-sm">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">Registro y pre-diagnóstico de daños</h4>
+                    </div>
+
+                    <div class="card-body">
+                        <form method="POST">
+                            {% csrf_token %}
+
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Dirección</label>
+                                <input type="text" name="direccion" class="form-control"
+                                       placeholder="Ej: Cerro Alegre, Valparaíso" required>
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="form-label fw-semibold">Descripción del daño</label>
+                                <textarea name="descripcion" class="form-control" rows="3" required></textarea>
+                            </div>
+
+                            <h5 class="mb-3">Cuestionario</h5>
+
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" name="grieta_visible" id="grieta_visible">
+                                <label class="form-check-label" for="grieta_visible">¿Hay grietas visibles en muros o fachada?</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" name="grieta_cambio" id="grieta_cambio">
+                                <label class="form-check-label" for="grieta_cambio">¿Alguna grieta ha crecido en las últimas semanas?</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" name="deformacion" id="deformacion">
+                                <label class="form-check-label" for="deformacion">¿Ves muros inclinados o pisos hundidos?</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" name="desprendimiento" id="desprendimiento">
+                                <label class="form-check-label" for="desprendimiento">¿Se han desprendido trozos de fachada?</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" name="filtracion" id="filtracion">
+                                <label class="form-check-label" for="filtracion">¿Hay filtraciones o manchas de humedad?</label>
+                            </div>
+                            <div class="form-check mb-2">
+                                <input class="form-check-input" type="checkbox" name="antiguedad" id="antiguedad">
+                                <label class="form-check-label" for="antiguedad">¿La vivienda tiene más de 50 años?</label>
+                            </div>
+                            <div class="form-check mb-4">
+                                <input class="form-check-input" type="checkbox" name="zona_patrimonial" id="zona_patrimonial">
+                                <label class="form-check-label" for="zona_patrimonial">¿Tu casa está en una zona patrimonial?</label>
+                            </div>
+
+                            <div class="d-grid">
+                                <button type="submit" class="btn btn-primary btn-lg">Enviar Reporte</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
 </body>
 </html>
