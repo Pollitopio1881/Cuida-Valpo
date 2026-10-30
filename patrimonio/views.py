@@ -38,6 +38,7 @@ def formulario_view(request):
         # Extraer datos del formulario HTML
         dir_ingresada = request.POST.get('direccion')
         desc_ingresada = request.POST.get('descripcion')
+        sector_ingresado = request.POST.get('sector', '').strip()
         
         grieta_vis = request.POST.get('grieta_visible') == 'on'
         grieta_cambio_vis = request.POST.get('grieta_cambio') == 'on'
@@ -67,6 +68,7 @@ def formulario_view(request):
         nuevo_reporte = Reporte.objects.create(
             direccion=dir_ingresada,
             descripcion=desc_ingresada,
+            sector=sector_ingresado,
             grieta_visible=grieta_vis,
             grieta_cambio=grieta_cambio_vis,
             deformacion=deformacion_vis,
@@ -78,6 +80,15 @@ def formulario_view(request):
             nivel_urgencia=nivel
         )
 
+        # Contar reportes de vecinos en el mismo sector (consulta real a la BD).
+        # exclude() saca el reporte que acabamos de crear para no contarlo a sí mismo.
+        reportes_cercanos = (
+            Reporte.objects
+            .filter(sector__iexact=sector_ingresado)
+            .exclude(pk=nuevo_reporte.pk)
+            .count()
+        )
+        
         # Filtrar trámites según nivel y respuestas
         claves_tramites = list(TRAMITES_POR_NIVEL[nivel])
         if zona_patrimonial_vis and "zona_patrimonial" not in claves_tramites:
@@ -94,7 +105,8 @@ def formulario_view(request):
             'nivel': nivel,
             'puntaje': puntaje_total,
             'tramites': tramites_recomendados,
+            'reportes_cercanos': reportes_cercanos,
         }
         return render(request, 'patrimonio/resultado.html', contexto)
 
-    return render(request, 'patrimonio/formulario.html')
+    return render(request, 'patrimonio/formulario.html', {'sectores': SECTORES})
