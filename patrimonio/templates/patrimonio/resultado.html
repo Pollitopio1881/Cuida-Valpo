@@ -52,7 +52,20 @@
                             <p class="text-muted">No hay trámites asociados a este nivel de urgencia.</p>
                         {% endif %}
                         
-                        <!-- Espacio para que Gaspar agregue la lógica de vecinos después -->
+                         <!-- Gaspar: reportes cercanos -->
+                        <hr>
+                        <h5>Reportes cercanos</h5>
+                        {% if reportes_cercanos > 0 %}
+                            <div class="alert alert-info mb-0">
+                                Hay <strong>{{ reportes_cercanos }}</strong> reporte{{ reportes_cercanos|pluralize }}
+                                más en <strong>{{ reporte.sector }}</strong>.
+                            </div>
+                        {% else %}
+                            <div class="alert alert-secondary mb-0">
+                                No hay otros reportes en <strong>{{ reporte.sector }}</strong>.
+                                Tu solicitud se mantiene individual.
+                            </div>
+                        {% endif %}
                     </div>
 
                     <div class="card-footer text-end">
