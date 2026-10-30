@@ -44,7 +44,7 @@ def formulario_view(request):
         lon_val = float(lon_ingresada) if lon_ingresada else None
         
         grieta_vis = request.POST.get('grieta_visible') == 'on'
-        grieta_cambio_vis = request.POST.get('grieta_cambio') == 'on'
+        grieta_cambio_vis = request.POST.get('grieta_cambio') == 'on' and grieta_vis
         deformacion_vis = request.POST.get('deformacion') == 'on'
         desprendimiento_vis = request.POST.get('desprendimiento') == 'on'
         filtracion_vis = request.POST.get('filtracion') == 'on'
@@ -91,8 +91,9 @@ def formulario_view(request):
         for clave in claves_tramites:
             tramites_recomendados.append(TRAMITES[clave])
 
-        vecinos_count = Reporte.objects.filter(sector=sector_ingresado).exclude(id=nuevo_reporte.id).count()
-
+        vecinos_count = (Reporte.objects.filter(sector=sector_ingresado)
+                        .exclude(id=nuevo_reporte.id)
+                        .exclude(direccion__iexact=dir_ingresada).count())
         contexto = {
             'reporte': nuevo_reporte,
             'nivel': nivel,
