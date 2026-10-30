@@ -3,33 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>CuidaValpo | Resultado del Diagnóstico</title>
+    <title>CuidaValpo | Orientación Preliminar</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
-<body>
-    <h2>Ficha de Pre-diagnóstico</h2>
-    <p><strong>Dirección:</strong> {{ reporte.direccion }}</p>
-    <p><strong>Descripción:</strong> {{ reporte.descripcion }}</p>
-    <p><strong>Puntaje Total:</strong> {{ puntaje }}</p>
-    <p><strong>Nivel de Urgencia:</strong> {{ nivel }}</p>
-    
-    <h2>Trámites recomendados</h2>
-
-    {% if tramites %}
-      <ul>
-        {% for tramite in tramites %}
-          <li>
-            <p>{{ tramite.descripcion }}</p>
-            <small>Fuente: {{ tramite.fuente }}</small>
-          </li>
-        {% endfor %}
-      </ul>
-    {% else %}
-      <p>No hay trámites asociados a este nivel de urgencia.</p>
-    {% endif %}
-
-    <br>
-    <a href="/">Volver a enviar otro reporte</a>
 <body class="bg-light">
 
     <nav class="navbar navbar-dark bg-dark mb-4">
@@ -44,15 +20,14 @@
 
                 <div class="card shadow-sm">
                     <div class="card-header bg-primary text-white">
-                        <h4 class="mb-0">Ficha de Pre-diagnóstico</h4>
-                    </div>
+                        <h4 class="mb-0">Ficha de Orientación Inicial</h4>
 
                     <div class="card-body">
                         <p><strong>Dirección:</strong> {{ reporte.direccion }}</p>
                         <p><strong>Descripción:</strong> {{ reporte.descripcion }}</p>
                         <p><strong>Puntaje Total:</strong> {{ puntaje }}</p>
 
-                        <p class="mb-0"><strong>Nivel de Urgencia:</strong>
+                        <p class="mb-4"><strong>Nivel de Atención Recomendado:</strong>
                             {% if nivel == "ALTA" %}
                                 <span class="badge bg-danger fs-6">{{ nivel }}</span>
                             {% elif nivel == "MEDIA" %}
@@ -62,8 +37,34 @@
                             {% endif %}
                         </p>
 
-                        <!-- Espacio reservado para Emily (trámites) y Gaspar (vecinos).
-                             Déjenlo: ellos agregan su contenido aquí dentro. -->
+                        <h5 class="border-bottom pb-2">Trámites recomendados</h5>
+                        {% if tramites %}
+                            <ul class="list-group list-group-flush mb-3">
+                            {% for tramite in tramites %}
+                                <li class="list-group-item px-0">
+                                    <strong>{{ tramite.descripcion }}</strong><br>
+                                    <small class="text-muted">Fuente: {{ tramite.fuente }}</small>
+                                </li>
+                            {% endfor %}
+                            </ul>
+                        {% else %}
+                            <p class="text-muted">No hay trámites asociados a este nivel de urgencia.</p>
+                        {% endif %}
+                        
+                         <!-- Gaspar: reportes cercanos -->
+                        <hr>
+                        <h5>Reportes cercanos</h5>
+                        {% if reportes_cercanos > 0 %}
+                            <div class="alert alert-info mb-0">
+                                Hay <strong>{{ reportes_cercanos }}</strong> reporte{{ reportes_cercanos|pluralize }}
+                                más en <strong>{{ reporte.sector }}</strong>.
+                            </div>
+                        {% else %}
+                            <div class="alert alert-secondary mb-0">
+                                No hay otros reportes en <strong>{{ reporte.sector }}</strong>.
+                                Tu solicitud se mantiene individual.
+                            </div>
+                        {% endif %}
                     </div>
 
                     <div class="card-footer text-end">
