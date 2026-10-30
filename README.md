@@ -22,11 +22,11 @@ cd Cuida-Valpo-main
 ```
 ### 2. Crear y activar el entorno virtual: 
 ```bash
-python -m venv venv` y luego `.\venv\Scripts\activate`.
+python -m venv venv y luego .\venv\Scripts\activate
 ```
 ### 3. Instalar Django: 
 ```bash
-pip install django`.
+pip install django
 ```
 ### 4. Crear admin (hacer una vez)
 ```bash
@@ -42,7 +42,7 @@ Superuser created successfully.
 ```
 ### 5.Ejecutar el servidor: 
 ```bash
-python manage.py runserver`.
+python manage.py runserver
 ```
 Finalmente, para comprobar la instalación correcta se puede dirigir a los siguientes links:
 
