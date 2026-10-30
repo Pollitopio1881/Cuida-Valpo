@@ -1,15 +1,44 @@
-# CuidaValpo - Proyecto IWG-400 (Grupo 14)
-Plataforma web desarrollada en Django para el prediagnóstico patrimonial y arquitectónico en Valparaíso.
+# Prediagnóstico Patrimonial
 
-## Funcionalidad Principal
-Permite a los propietarios evaluar daños estructurales respondiendo un cuestionario. El sistema calcula un nivel de urgencia, entrega un informe con los trámites legales correspondientes (LGUC, Ley 17.288, DS27) y detecta si existen reportes vecinos en el mismo sector para fomentar la postulación comunitaria a evaluaciones profesionales.
+Este proyecto es una aplicación web desarrollada con Django para realizar diagnósticos y gestiones patrimoniales.
 
-## Instrucciones de Ejecución
-1. Clonar el repositorio.
-2. Crear y activar el entorno virtual: `python -m venv venv` y luego `.\venv\Scripts\activate`.
-3. Instalar Django: `pip install django`.
-4. Ejecutar el servidor: `python manage.py runserver`.
-5. Acceder a `http://127.0.0.1:8000/` en el navegador.
+---
 
-## Panel de Administración
-Se puede acceder a `http://127.0.0.1:8000/admin/` con las credenciales creadas localmente mediante `python manage.py createsuperuser` para visualizar los reportes guardados en la base de datos.
+## Requisitos previos
+
+- Python 3.10 o superior
+- Git
+
+---
+
+## Instalación y Configuración
+
+Sigue estos pasos para clonar e instalar el proyecto en tu máquina local:
+
+### 1. Clonar el repositorio
+```bash
+git clone <URL_DE_TU_REPOSOTORIO>
+cd Prediagnostico-patrimonial-main  
+```
+### 2. Crear admin (hacer una vez)
+```bash
+python manage.py createsuperuser
+```
+A continuación va a solicitar crear un nombre de usuario, ingresar un correo y crear una contraseña:
+```bash
+Username:
+Email address:
+Password:
+Password (again):
+Superuser created successfully.
+```
+Finalmente, para comprobar la instalación correcta se puede dirigir a los siguientes links:
+
+En el primero se deben ingresar las credenciales anteriormente creadas para acceder a las funciones de administración del sitio:
+```bash
+http://127.0.0.1:8000/admin/
+```
+El segundo se dirigira al sitio de acceso público:
+```bash
+http://127.0.0.1:8000/
+```
