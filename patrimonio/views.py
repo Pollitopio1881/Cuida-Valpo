@@ -26,6 +26,13 @@ TRAMITES_POR_NIVEL = {
     "BAJA": ["ds27"],
 }
 
+# Sectores disponibles en el formulario (valor que se guarda en la BD, texto que ve el usuario)
+SECTORES = [
+    ("Cerro Alegre", "Cerro Alegre"),
+    ("Cerro Concepción", "Cerro Concepción"),
+    ("Cerro Bellavista", "Cerro Bellavista"),
+]
+
 def formulario_view(request):
     if request.method == 'POST':
         # Extraer datos del formulario HTML
