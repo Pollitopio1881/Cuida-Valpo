@@ -32,7 +32,17 @@
                                 <input type="text" name="direccion" class="form-control"
                                        placeholder="Ej: Cerro Alegre, Valparaíso" required>
                             </div>
-
+                            
+                            <div class="mb-3">
+                                <label class="form-label fw-semibold">Sector</label>
+                                <select name="sector" class="form-select" required>
+                                    <option value="" selected disabled>Selecciona tu sector</option>
+                                    {% for valor, nombre in sectores %}
+                                        <option value="{{ valor }}">{{ nombre }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+    
                             <div class="mb-4">
                                 <label class="form-label fw-semibold">Descripción del daño</label>
                                 <textarea name="descripcion" class="form-control" rows="3" required></textarea>
