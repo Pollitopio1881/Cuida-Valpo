@@ -26,7 +26,6 @@ TRAMITES_POR_NIVEL = {
     "BAJA": ["ds27"],
 }
 
-# Sectores disponibles en el formulario (valor que se guarda en la BD, texto que ve el usuario)
 SECTORES = [
     ("Cerro Alegre", "Cerro Alegre"),
     ("Cerro Concepción", "Cerro Concepción"),
@@ -35,9 +34,14 @@ SECTORES = [
 
 def formulario_view(request):
     if request.method == 'POST':
-        # Extraer datos del formulario HTML
         dir_ingresada = request.POST.get('direccion')
         desc_ingresada = request.POST.get('descripcion')
+        sector_ingresado = request.POST.get('sector')
+        
+        lat_ingresada = request.POST.get('latitud')
+        lon_ingresada = request.POST.get('longitud')
+        lat_val = float(lat_ingresada) if lat_ingresada else None
+        lon_val = float(lon_ingresada) if lon_ingresada else None
         
         grieta_vis = request.POST.get('grieta_visible') == 'on'
         grieta_cambio_vis = request.POST.get('grieta_cambio') == 'on'
@@ -47,7 +51,6 @@ def formulario_view(request):
         antiguedad_vis = request.POST.get('antiguedad') == 'on'
         zona_patrimonial_vis = request.POST.get('zona_patrimonial') == 'on'
 
-        # Sumar puntaje
         puntaje_total = 0
         if grieta_vis: puntaje_total += 2
         if grieta_cambio_vis: puntaje_total += 3
@@ -63,10 +66,12 @@ def formulario_view(request):
         else:
             nivel = "BAJA"
 
-        # Guardar en base de datos
         nuevo_reporte = Reporte.objects.create(
             direccion=dir_ingresada,
             descripcion=desc_ingresada,
+            sector=sector_ingresado,
+            latitud=lat_val,
+            longitud=lon_val,
             grieta_visible=grieta_vis,
             grieta_cambio=grieta_cambio_vis,
             deformacion=deformacion_vis,
@@ -78,23 +83,23 @@ def formulario_view(request):
             nivel_urgencia=nivel
         )
 
-        # Filtrar trámites según nivel y respuestas
         claves_tramites = list(TRAMITES_POR_NIVEL[nivel])
         if zona_patrimonial_vis and "zona_patrimonial" not in claves_tramites:
             claves_tramites.append("zona_patrimonial")
 
-        # Convertir claves en datos completos para el template
         tramites_recomendados = []
         for clave in claves_tramites:
             tramites_recomendados.append(TRAMITES[clave])
 
-        # Enviar al HTML de resultados
+        vecinos_count = Reporte.objects.filter(sector=sector_ingresado).exclude(id=nuevo_reporte.id).count()
+
         contexto = {
             'reporte': nuevo_reporte,
             'nivel': nivel,
             'puntaje': puntaje_total,
             'tramites': tramites_recomendados,
+            'reportes_cercanos': vecinos_count,
         }
         return render(request, 'patrimonio/resultado.html', contexto)
 
-    return render(request, 'patrimonio/formulario.html')
+    return render(request, 'patrimonio/formulario.html', {'sectores': SECTORES})
