@@ -104,3 +104,11 @@ def formulario_view(request):
         return render(request, 'patrimonio/resultado.html', contexto)
 
     return render(request, 'patrimonio/formulario.html', {'sectores': SECTORES})
+
+def dashboard_view(request):
+    reportes = Reporte.objects.all().order_by('-fecha_creacion')
+    contexto = {
+        'reportes': reportes,
+        'total_reportes': reportes.count(),
+    }
+    return render(request, 'patrimonio/dashboard.html', contexto)

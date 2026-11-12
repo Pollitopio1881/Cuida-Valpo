@@ -9,9 +9,10 @@
 </head>
 <body class="bg-light">
 
-    <nav class="navbar navbar-dark bg-dark mb-4">
+<nav class="navbar navbar-dark bg-dark mb-4">
         <div class="container">
-            <span class="navbar-brand fw-bold">🏛️ CuidaValpo</span>
+            <a class="navbar-brand fw-bold" href="{% url 'formulario' %}">🏛️ CuidaValpo</a>
+            <a href="{% url 'dashboard' %}" class="btn btn-outline-light btn-sm">Ver Comunidad</a>
         </div>
     </nav>
 
@@ -111,6 +112,16 @@
         map.on('click', function(e) {
             var lat = e.latlng.lat;
             var lng = e.latlng.lng;
+            fetch(`https://nominatim.openstreetmap.org/reverse?format=json&lat=${lat}&lon=${lng}`)
+                .then(response => response.json())
+                .then(data => {
+                    if(data.address) {
+                        let calle = data.address.road || '';
+                        let numero = data.address.house_number || '';
+                        let ciudad = data.address.city || data.address.town || 'Valparaíso';
+                        document.querySelector('input[name="direccion"]').value = `${calle} ${numero}, ${ciudad}`.trim();
+                    }
+            });
             if (marcador) {
                 map.removeLayer(marcador);
             }
