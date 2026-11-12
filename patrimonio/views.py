@@ -4,19 +4,19 @@ from .models import Reporte
 TRAMITES = {
     "dom": {
         "descripcion": "Consultar a la DOM de Valparaíso si la reparación requiere permiso o inspección",
-        "fuente": "Ley General de Urbanismo y Construcciones / Guía DOM [VERIFICAR artículo]",
+        "fuente": "Ley General de Urbanismo y Construcciones (LGUC), Art. 116.",
     },
     "profesional": {
         "descripcion": "Solicitar evaluación de un arquitecto o ingeniero civil",
-        "fuente": "[POR COMPLETAR]",
+        "fuente": "Ordenanza General de Urbanismo y Construcciones (OGUC), Art. 5.1.7.",
     },
     "ds27": {
         "descripcion": "Revisar si puedes postular al programa de mejoramiento de viviendas DS27",
-        "fuente": "DS27 MINVU [VERIFICAR requisitos vigentes]",
+        "fuente": "Decreto Supremo N° 27 (MINVU) - Programa de Mejoramiento de Viviendas y Barrios.",
     },
     "zona_patrimonial": {
         "descripcion": "Si la vivienda está en zona protegida, consultar antes de intervenir la fachada",
-        "fuente": "Ley 17.288 de Monumentos Nacionales [VERIFICAR si aplica a tu sector]",
+        "fuente": "Ley N° 17.288 de Monumentos Nacionales, Art. 29 y 30 (Zonas Típicas).",
     },
 }
 

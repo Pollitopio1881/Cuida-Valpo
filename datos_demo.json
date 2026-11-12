@@ -1,0 +1,140 @@
+[
+{
+    "model": "patrimonio.reporte",
+    "pk": 6,
+    "fields": {
+        "direccion": "Templeman 769, Valparaíso",
+        "fotos": null,
+        "descripcion": "casa en riesgo de caida",
+        "grieta_visible": true,
+        "grieta_cambio": false,
+        "deformacion": false,
+        "desprendimiento": true,
+        "filtracion": false,
+        "antiguedad": false,
+        "zona_patrimonial": false,
+        "puntaje": 6,
+        "nivel_urgencia": "ALTA",
+        "sector": "Cerro Alegre",
+        "tipo_solicitud": "INDIVIDUAL",
+        "latitud": -33.04321898648973,
+        "longitud": -71.62907838821413,
+        "fecha_creacion": "2026-11-12T17:33:36.961Z"
+    }
+},
+{
+    "model": "patrimonio.reporte",
+    "pk": 7,
+    "fields": {
+        "direccion": "Lautaro Rosas 314, Valparaíso",
+        "fotos": null,
+        "descripcion": "Casa con filtraciones de agua en el tejado",
+        "grieta_visible": true,
+        "grieta_cambio": true,
+        "deformacion": false,
+        "desprendimiento": false,
+        "filtracion": true,
+        "antiguedad": true,
+        "zona_patrimonial": false,
+        "puntaje": 7,
+        "nivel_urgencia": "ALTA",
+        "sector": "Cerro Alegre",
+        "tipo_solicitud": "INDIVIDUAL",
+        "latitud": -33.042029581636044,
+        "longitud": -71.63015127182008,
+        "fecha_creacion": "2026-11-12T17:52:07.434Z"
+    }
+},
+{
+    "model": "patrimonio.reporte",
+    "pk": 8,
+    "fields": {
+        "direccion": "Miramar , Valparaíso",
+        "fotos": null,
+        "descripcion": "casa",
+        "grieta_visible": true,
+        "grieta_cambio": true,
+        "deformacion": false,
+        "desprendimiento": false,
+        "filtracion": true,
+        "antiguedad": true,
+        "zona_patrimonial": false,
+        "puntaje": 7,
+        "nivel_urgencia": "ALTA",
+        "sector": "Cerro Alegre",
+        "tipo_solicitud": "INDIVIDUAL",
+        "latitud": -33.04206555630951,
+        "longitud": -71.63049459457399,
+        "fecha_creacion": "2026-11-12T17:52:57.131Z"
+    }
+},
+{
+    "model": "patrimonio.reporte",
+    "pk": 9,
+    "fields": {
+        "direccion": "Lautaro Rosas 314, Valparaíso",
+        "fotos": null,
+        "descripcion": "casa",
+        "grieta_visible": true,
+        "grieta_cambio": true,
+        "deformacion": false,
+        "desprendimiento": false,
+        "filtracion": true,
+        "antiguedad": true,
+        "zona_patrimonial": false,
+        "puntaje": 7,
+        "nivel_urgencia": "ALTA",
+        "sector": "Cerro Alegre",
+        "tipo_solicitud": "INDIVIDUAL",
+        "latitud": -33.041957632245065,
+        "longitud": -71.6302800178528,
+        "fecha_creacion": "2026-11-12T17:53:17.096Z"
+    }
+},
+{
+    "model": "patrimonio.reporte",
+    "pk": 10,
+    "fields": {
+        "direccion": "Beethoven , Valparaíso",
+        "fotos": null,
+        "descripcion": "Casa con falta de mantenimiento",
+        "grieta_visible": false,
+        "grieta_cambio": false,
+        "deformacion": false,
+        "desprendimiento": true,
+        "filtracion": true,
+        "antiguedad": false,
+        "zona_patrimonial": false,
+        "puntaje": 5,
+        "nivel_urgencia": "MEDIA",
+        "sector": "Cerro Alegre",
+        "tipo_solicitud": "INDIVIDUAL",
+        "latitud": -33.04289296974389,
+        "longitud": -71.62611722946168,
+        "fecha_creacion": "2026-11-12T17:59:07.705Z"
+    }
+},
+{
+    "model": "patrimonio.reporte",
+    "pk": 11,
+    "fields": {
+        "direccion": "José Tomás Ramos , Valparaíso",
+        "fotos": null,
+        "descripcion": "Casa sin ventanas y signos de humedad",
+        "grieta_visible": true,
+        "grieta_cambio": false,
+        "deformacion": false,
+        "desprendimiento": false,
+        "filtracion": true,
+        "antiguedad": false,
+        "zona_patrimonial": false,
+        "puntaje": 3,
+        "nivel_urgencia": "MEDIA",
+        "sector": "Cerro Alegre",
+        "tipo_solicitud": "INDIVIDUAL",
+        "latitud": -33.04109423496933,
+        "longitud": -71.63161039352418,
+        "fecha_creacion": "2026-11-12T17:59:49.714Z"
+    }
+}
+]

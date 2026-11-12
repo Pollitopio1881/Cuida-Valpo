@@ -8,9 +8,10 @@
 </head>
 <body class="bg-light">
 
-    <nav class="navbar navbar-dark bg-dark mb-4">
-        <div class="container">
-            <span class="navbar-brand fw-bold">🏛️ CuidaValpo</span>
+<nav class="navbar navbar-dark bg-dark mb-4">
+        <div class="container d-flex justify-content-between">
+            <a class="navbar-brand fw-bold text-decoration-none" href="{% url 'formulario' %}">🏛️ CuidaValpo</a>
+            <a href="{% url 'dashboard' %}" class="btn btn-outline-light btn-sm">Ver Comunidad</a>
         </div>
     </nav>
 
