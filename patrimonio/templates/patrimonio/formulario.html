@@ -103,9 +103,9 @@
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>
         var map = L.map('mapa_valpo').setView([-33.0435, -71.6260], 15);
-        L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+        L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
             maxZoom: 19,
-            attribution: '© OpenStreetMap contributors © CARTO'
+            attribution: 'Tiles © Esri'
         }).addTo(map);
 
         var marcador;
